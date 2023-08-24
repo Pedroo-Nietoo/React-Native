@@ -1,62 +1,25 @@
-import { Alert, StyleSheet, View } from 'react-native';
-import { TextInput, Button, Text } from 'react-native-paper';
+import Cadastro from './components/Cadastro';
+import Login from './components/Login';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React, { useState } from 'react';
+import { Alert, StyleSheet, View } from 'react-native';
+import { TextInput, Text, Button } from 'react-native-paper';
 
 export default function App() {
-  const [passwordVisible, setPasswordVisible] = useState(true);
+  const Stack = createNativeStackNavigator();
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Login</Text>
-      <TextInput
-        mode='outlined'
-        cancelable='true'
-        style={styles.input}
-        keyboardType='email-address'
-        label="E-mail"
-      />
-
-      <TextInput
-        mode='outlined'
-        cancelable='true'
-        style={styles.input}
-        label="Senha"
-        secureTextEntry={passwordVisible}
-        right={
-          <TextInput.Icon
-            icon={passwordVisible ? 'eye-off' : 'eye'}
-            onPress={() => setPasswordVisible(!passwordVisible)}
-          />
-        }
-      />
-
-      <View style={styles.spanContainer}>
-        <Text>Não possui uma conta?</Text>
-        <Button>Cadastre-se</Button>
-      </View>
-
-
-      <Button
-        style={styles.button}
-        dark='true'
-        icon="login"
-        mode="contained-tonal"
-        onPress={() => Alert.alert('Home',
-          'Seja bem-vindo(a) novamente. Acesse seus dados na aba Graphics!',
-          [
-            {
-              text: 'OK',
-              style: 'default',
-            },
-          ], {
-          cancelable: true
-        })}>
-        Entrar
-      </Button>
-    </View >
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{
+        headerShown: false
+      }} initialRouteName="Login">
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Cadastro" component={Cadastro} />
+      </Stack.Navigator>
+    </NavigationContainer >
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
