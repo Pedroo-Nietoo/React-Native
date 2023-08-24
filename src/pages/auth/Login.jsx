@@ -1,4 +1,4 @@
-import { Alert, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { TextInput, Button, Text } from 'react-native-paper';
 import React, { useState } from 'react';
 
@@ -52,16 +52,7 @@ export default function Login({ navigation }) {
         dark='true'
         icon="login"
         mode="contained-tonal"
-        onPress={() => Alert.alert('Home',
-          'Seja bem-vindo(a) novamente. Acesse seus dados na aba Graphics!',
-          [
-            {
-              text: 'OK',
-              style: 'default',
-            },
-          ], {
-          cancelable: true
-        })}>
+        onPress={() => navigation.navigate('Home')}>
         Entrar
       </Button>
     </View >

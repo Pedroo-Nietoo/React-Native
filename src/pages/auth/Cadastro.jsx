@@ -84,7 +84,7 @@ export default function Cadastro({ navigation }) {
           icon="login"
           mode="contained-tonal"
           onPress={() => showToast()}>
-          Entrar
+          Cadastrar
         </Button>
       </ScrollView>
     </View >
