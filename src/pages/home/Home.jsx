@@ -1,22 +1,24 @@
 import { StyleSheet, View } from 'react-native';
-import { Avatar, Searchbar, Text, SegmentedButtons, Appbar } from 'react-native-paper';
+import { Searchbar, Text, SegmentedButtons, Appbar } from 'react-native-paper';
 import { useState } from 'react';
 
-export default function Home() {
+export default function Home({ navigation }) {
     const [value, setValue] = useState('');
 
     return (
         <View style={styles.container}>
-            <Appbar.Header mode='center-aligned' style={{ marginHorizontal: 30 }}>
-                <Appbar.BackAction onPress={() => { }} />
-                <Appbar.Content title="Title" titleStyle={{ color: '#f0f', width: 100 }} />
-                <Appbar.Action icon="calendar" onPress={() => { }} />
-                <Appbar.Action icon="magnify" onPress={() => { }} />
+            <Appbar.Header style={{ backgroundColor: 'transparent' }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16 }}>
+                    <Appbar.BackAction onPress={() => navigation.goBack()} />
+                    <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'flex-end' }}>
+                        <Appbar.Action icon="calendar" onPress={() => { }} />
+                        <Appbar.Action icon="account-cog-outline" onPress={() => navigation.navigate('User')} />
+                    </View>
+                </View>
             </Appbar.Header>
 
             <View style={styles.align}>
-                <Avatar.Text size={30} label="PN" />
-                <Text style={styles.username}>Olá, Pedro!</Text>
+                <Text style={styles.username}>Boa tarde, Pedro!</Text>
             </View>
 
             <Searchbar mode='bar' placeholder="Pesquise suas tarefas" style={styles.margin} />
@@ -51,14 +53,16 @@ const styles = StyleSheet.create({
         alignItems: 'flex-start',
     },
     align: {
+        marginTop: 30,
+        marginBottom: 30,
         margin: 15,
-        left: 15,
+        left: 10,
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center'
     },
     username: {
-        fontSize: 20,
+        fontSize: 25,
         margin: 20
     },
     margin: {
