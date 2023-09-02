@@ -1,4 +1,4 @@
-import { Alert, StyleSheet, ToastAndroid, View } from 'react-native';
+import { Alert, StyleSheet, ToastAndroid, View, Image, ScrollView } from 'react-native';
 import { Avatar, Appbar, Text, Button } from 'react-native-paper';
 import { useState } from 'react';
 
@@ -32,18 +32,24 @@ export default function User({ navigation }) {
 
     return (
         <View>
-            <Appbar.Header style={{ backgroundColor: 'transparent' }}>
-                <Appbar.BackAction onPress={() => navigation.goBack()} />
-            </Appbar.Header>
-            <View style={styles.align}>
-                <Avatar.Text size={100} label="PN" />
-                <Text style={{ fontSize: 30, marginTop: 30 }}>Pedro Nieto</Text>
-                <Text>Apaixonado por pugs</Text>
-                <Button icon='file-upload-outline' onPress={() => ToastAndroid.show('Foto alterada!', ToastAndroid.SHORT)}>Alterar foto de perfil</Button>
-                <Button icon='pencil' onPress={() => ToastAndroid.show('Nome alterado!', ToastAndroid.SHORT)}>Alterar nome de usuário</Button>
-                <Button icon='file-upload-outline' onPress={() => ToastAndroid.show('Foto enviada!', ToastAndroid.SHORT)}>Enviar foto de perfil</Button>
-                <Button icon='delete' onPress={() => showAlert()}>Excluir conta</Button>
-            </View>
+            <ScrollView>
+                <Appbar.Header style={{ backgroundColor: 'transparent' }}>
+                    <Appbar.BackAction onPress={() => navigation.goBack()} />
+                </Appbar.Header>
+                <View style={styles.align}>
+                    <Avatar.Text size={100} label="PN" />
+                    <Text style={{ fontSize: 30, marginTop: 30 }}>Pedro Nieto</Text>
+                    <Text style={styles.description}>Apaixonado por pugs</Text>
+                    <Button icon='file-upload-outline' onPress={() => ToastAndroid.show('Foto alterada!', ToastAndroid.SHORT)}>Alterar foto de perfil</Button>
+                    <Button icon='pencil' onPress={() => ToastAndroid.show('Nome alterado!', ToastAndroid.SHORT)}>Alterar nome de usuário</Button>
+                    <Button icon='file-upload-outline' onPress={() => ToastAndroid.show('Foto enviada!', ToastAndroid.SHORT)}>Enviar foto de perfil</Button>
+                    <Button icon='delete' onPress={() => showAlert()}>Excluir conta</Button>
+                    <Image
+                        style={styles.pugs}
+                        source={require('../../../assets/pugs.png')}
+                    />
+                </View>
+            </ScrollView>
         </View >
     );
 }
@@ -57,5 +63,14 @@ const styles = StyleSheet.create({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center'
+    },
+    description: {
+        marginBottom: 20
+    },
+    pugs: {
+        marginVertical: 50,
+        width: 150,
+        height: 150,
+        borderRadius: 10
     }
 });
